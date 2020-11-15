@@ -8,14 +8,22 @@ import { Listing } from '../types';
   templateUrl: './listing-details-page.component.html',
   styleUrls: ['./listing-details-page.component.css']
 })
+  
 export class ListingDetailsPageComponent implements OnInit {
-  listing: Listing;
+  listing: Listing ;
+  
 
-  constructor(private route : ActivatedRoute) { }
+  constructor(private router: ActivatedRoute) { };
+  
+ 
+  ngOnInit() {
+    const id = this.router.snapshot.paramMap.get('id');
+    console.log(id);
+    this.listing = fakeListings.find(listing => listing.id ===id) ;
+   
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.listing  = fakeListings.find(listing => listing.id ===id)
+    console.log(this.listing)
+
   }
 
 }
